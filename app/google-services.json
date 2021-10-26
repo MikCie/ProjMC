@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1001455865880",
+    "firebase_url": "https://aplikacjainoxstal-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "aplikacjainoxstal",
+    "storage_bucket": "aplikacjainoxstal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001455865880:android:9c71f91d2ab54aa461f36d",
+        "android_client_info": {
+          "package_name": "com.example.projdyplmc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001455865880-ag9hf3hn4f2flbntuv0dslgrfuml31kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ6EHulFbD1yJZOHazGuMLgW2SVf330u0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001455865880-ag9hf3hn4f2flbntuv0dslgrfuml31kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001455865880:android:04607ff934fff0df61f36d",
+        "android_client_info": {
+          "package_name": "com.example.projmcpopr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001455865880-ag9hf3hn4f2flbntuv0dslgrfuml31kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ6EHulFbD1yJZOHazGuMLgW2SVf330u0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001455865880-ag9hf3hn4f2flbntuv0dslgrfuml31kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001455865880:android:1eb5f5736db01e6261f36d",
+        "android_client_info": {
+          "package_name": "com.example.projpoprmc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001455865880-ag9hf3hn4f2flbntuv0dslgrfuml31kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ6EHulFbD1yJZOHazGuMLgW2SVf330u0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001455865880-ag9hf3hn4f2flbntuv0dslgrfuml31kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
