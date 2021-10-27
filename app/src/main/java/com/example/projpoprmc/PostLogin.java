@@ -9,13 +9,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -24,18 +29,17 @@ import java.util.List;
 
 public class PostLogin extends MainActivity {
     int i = 0;
+    boolean serwis = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.postlogin);
         Spinner lista = (Spinner) this.findViewById(R.id.spinnerPompowni);
-
+        TextView p = (TextView) this.findViewById(R.id.powitanie);
         List<String> spinnerArray =  new ArrayList<String>();
 
         String UID = "";
-
-        TextView p = (TextView) this.findViewById(R.id.powitanie);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -50,9 +54,10 @@ public class PostLogin extends MainActivity {
                         DocumentSnapshot doc = task.getResult();
                         if (doc.exists()) {
                             p.setText("Witaj "+doc.getString("Imie")+"!");
-                            Boolean Serwisant=Boolean.valueOf(doc.getBoolean("CzySerwis"));
-                            if(Serwisant){
-                                p.setText("Kokos");
+                            serwis=Boolean.valueOf(doc.getBoolean("CzySerwis"));
+                            if(serwis){
+                                p.setText("Kryształ");
+
                             }else{
                                 List<String> extra = (List<String>) doc.get("Pompownie");
                                 int z= extra.size();
@@ -68,11 +73,14 @@ public class PostLogin extends MainActivity {
                     }
                 }
             });
-            spinnerArray.add("");
+
+            spinnerArray.add("S1");
             ArrayAdapter<String> adapter = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             lista.setAdapter(adapter);
+            //lista.setSelection(1);
         }
+
     }
 
     public void Przenieś(View view) {
@@ -85,6 +93,8 @@ public class PostLogin extends MainActivity {
             Log.d("guzikers", "Wartość klku pompowni: " + pomp);
             Intent i = new Intent(this, PompowniaCheck.class);
             i.putExtra("Pompownia", pomp);
+            i.putExtra("serwis", String.valueOf(serwis));
+            Toast.makeText(this, String.valueOf(serwis), Toast.LENGTH_LONG).show();
             startActivity(i);
         }
     }
