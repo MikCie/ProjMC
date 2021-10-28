@@ -75,6 +75,7 @@ public class PostLogin extends MainActivity {
             });
 
             spinnerArray.add("S1");
+            spinnerArray.add("S2");
             ArrayAdapter<String> adapter = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             lista.setAdapter(adapter);
