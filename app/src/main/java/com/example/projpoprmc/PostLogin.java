@@ -56,7 +56,28 @@ public class PostLogin extends MainActivity {
                             p.setText("Witaj "+doc.getString("Imie")+"!");
                             serwis=Boolean.valueOf(doc.getBoolean("CzySerwis"));
                             if(serwis){
-                                p.setText("Kryształ");
+                                CollectionReference firestore= FirebaseFirestore.getInstance().collection("Stacje");
+                                firestore.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            List<String> list = new ArrayList<>();
+                                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                                list.add(document.getId());
+                                            }
+                                            int z=list.size();
+                                            int i=0;
+                                            while(i<z){
+                                                spinnerArray.add(list.get(i));
+                                                Log.d("Lista", "Stacja: " + list.get(i));
+                                                i++;
+                                            }
+                                            Log.d("TAG", list.toString());
+                                        } else {
+                                            Log.d("TAG", "Error getting documents: ", task.getException());
+                                        }
+                                    }
+                                });
 
                             }else{
                                 List<String> extra = (List<String>) doc.get("Pompownie");
@@ -74,12 +95,10 @@ public class PostLogin extends MainActivity {
                 }
             });
 
-            spinnerArray.add("S1");
-            spinnerArray.add("S2");
+            spinnerArray.add("Wybierz stację");
             ArrayAdapter<String> adapter = new ArrayAdapter<String>( this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             lista.setAdapter(adapter);
-            //lista.setSelection(1);
         }
 
     }
@@ -87,11 +106,10 @@ public class PostLogin extends MainActivity {
     public void Przenieś(View view) {
         Spinner lista = (Spinner) this.findViewById(R.id.spinnerPompowni);
         String pomp = lista.getSelectedItem().toString();
-        if(pomp.isEmpty()){
+        if(pomp.equals("Wybierz stację")){
             Toast.makeText(this, "Wybierz prawidłową pompownie", Toast.LENGTH_LONG).show();
         }else {
 
-            Log.d("guzikers", "Wartość klku pompowni: " + pomp);
             Intent i = new Intent(this, PompowniaCheck.class);
             i.putExtra("Pompownia", pomp);
             i.putExtra("serwis", String.valueOf(serwis));

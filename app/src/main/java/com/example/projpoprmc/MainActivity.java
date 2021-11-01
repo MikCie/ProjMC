@@ -118,4 +118,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void logujKlient(View view) {
+        String EmCheck = "cosiebede@gmail.com";
+        String PassCheck = "hopas321";
+
+        mAuth.signInWithEmailAndPassword(EmCheck, PassCheck)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            String UID=user.getUid();
+                            updateUI(UID);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        }
+                    }
+                });
+    }
 }
