@@ -168,6 +168,7 @@ public class PompowniaCheck extends AppCompatActivity {
                 FirebaseFirestore.getInstance().collection("Stacje").document(pompownia).update("P1IloscZalaczen", p1zalaNWar);
             if(p2zala<=p2zalaNWar)
                 FirebaseFirestore.getInstance().collection("Stacje").document(pompownia).update("P2IloscZalaczen", p2zalaNWar);
+            FirebaseFirestore.getInstance().collection("Stacje").document(pompownia).update("CzyWymaga", false);
 
 
 

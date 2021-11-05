@@ -31,20 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*@Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser!=null){
-            String UID =currentUser.getUid().toString();
-            updateUI(UID);
-        }else{
-            Toast.makeText(this, "Nie jesteś zalogowany, zaloguj się.", Toast.LENGTH_LONG).show();
-        }
-
-    }*/
-
     public void updateUI(String UID){
         if(UID!=null) {
             Intent i = new Intent(this, PostLogin.class);
@@ -57,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void zalogujClick(View view) {
 
         EditText email = (EditText) this.findViewById(R.id.Emailbox);
@@ -66,25 +50,28 @@ public class MainActivity extends AppCompatActivity {
         String EmCheck = email.getText().toString().trim();
         String PassCheck = pass.getText().toString().trim();
 
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String UID =currentUser.getUid();
-        mAuth.signInWithEmailAndPassword(EmCheck, PassCheck)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(UID);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            //Toast.makeText(this, "Błąd przy logowaniu.", Toast.LENGTH_LONG).show();
+        if(EmCheck.isEmpty() || PassCheck.isEmpty()){
+            Toast.makeText(this, "Wprowadź dane aby się zalogować.", Toast.LENGTH_LONG).show();
+        }else {
+            mAuth.signInWithEmailAndPassword(EmCheck, PassCheck)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d(TAG, "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(UID);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                //Toast.makeText(this, "Błąd przy logowaniu.", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     public void klik(View view) {
