@@ -32,7 +32,6 @@ public class PompowniaCheck extends AppCompatActivity {
     double p2PPra=0;
     int p1zala=0;
     int p2zala=0;
-
     int p1CzasNWar=0;
     int p2CzasNWar=0;
     double p1PRozNWar=0;
@@ -49,6 +48,7 @@ public class PompowniaCheck extends AppCompatActivity {
         setContentView(R.layout.activity_pompownia_check);
         TextView S =(TextView) this.findViewById(R.id.textViewP);
         Button bs=(Button) this.findViewById(R.id.buttonSerwis);
+        Button butz=(Button) this.findViewById(R.id.butZglos);
         TextView p1pr =(TextView) this.findViewById(R.id.p1pr);
         TextView p2pr =(TextView) this.findViewById(R.id.p2pr);
         TextView p1pp =(TextView) this.findViewById(R.id.p1pp);
@@ -95,6 +95,9 @@ public class PompowniaCheck extends AppCompatActivity {
 
         if(serwisant==true) {
             bs.setVisibility(View.VISIBLE);
+        }
+        else{
+            butz.setVisibility(View.VISIBLE);
         }
 
         Log.d("Pompownia", "Pompownia: "+pompownia);
@@ -224,5 +227,11 @@ public class PompowniaCheck extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Błąd, zrestartuj aplikacje", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void SerwPomp(View view) {
+        FirebaseFirestore.getInstance().collection("Stacje").document(pompownia).update("CzyWymaga", true);
+        String update = "Pompownia: "+pompownia+" została zgłoszona do serwisu.";
+        Toast.makeText(this, update, Toast.LENGTH_LONG).show();
     }
 }

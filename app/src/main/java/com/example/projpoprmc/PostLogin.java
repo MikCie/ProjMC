@@ -101,7 +101,7 @@ public class PostLogin extends MainActivity {
                                                             DocumentSnapshot doc = task.getResult();
                                                             cwCheck =Boolean.valueOf(doc.getBoolean("CzyWymaga"));
                                                             Log.d("Pompownia "+doc.getId(), String.valueOf(cwCheck));
-                                                            if(cwCheck){
+                                                            if(cwCheck==true){
                                                                 serwNot.setText(tekstInside[0] +" "+transfer);
                                                             }
                                                         }else{
@@ -149,7 +149,6 @@ public class PostLogin extends MainActivity {
         if (pomp.equals("Wybierz stację")) {
             Toast.makeText(this, "Wybierz prawidłową pompownie", Toast.LENGTH_LONG).show();
         } else {
-
             Intent i = new Intent(this, PompowniaCheck.class);
             i.putExtra("Pompownia", pomp);
             i.putExtra("serwis", String.valueOf(serwis));
