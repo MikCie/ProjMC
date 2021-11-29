@@ -48,7 +48,6 @@ public class PostLogin extends MainActivity {
         TextView serwNot = (TextView) this.findViewById(R.id.SerwText);
         List<String> spinnerArray = new ArrayList<String>();
         List<String> holder = new ArrayList<String>();
-        List<String> listaSerwis = new ArrayList<>();
         List<String> list = new ArrayList<>();
 
 
@@ -92,7 +91,6 @@ public class PostLogin extends MainActivity {
                                             i=0;
                                             while(i<holder.size()){
                                                 transfer=holder.get(i);
-                                                Log.d("Transfer", transfer);
                                                 DocumentReference docPomp = FirebaseFirestore.getInstance().collection("Stacje").document(transfer);
                                                 docPomp.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                     @Override
@@ -100,9 +98,9 @@ public class PostLogin extends MainActivity {
                                                         if (task.isSuccessful()) {
                                                             DocumentSnapshot doc = task.getResult();
                                                             cwCheck =Boolean.valueOf(doc.getBoolean("CzyWymaga"));
-                                                            Log.d("Pompownia "+doc.getId(), String.valueOf(cwCheck));
                                                             if(cwCheck==true){
-                                                                serwNot.setText(tekstInside[0] +" "+transfer);
+                                                                tekstInside[0] += " " + docPomp.getId();
+                                                                serwNot.setText(tekstInside[0]);
                                                             }
                                                         }else{
                                                             Log.d("Document", "Brak dokumentu");
@@ -110,7 +108,6 @@ public class PostLogin extends MainActivity {
                                                     }
                                                 });
                                                 i++;
-                                            Log.d("Wielkosc listy ", String.valueOf(listaSerwis.size()));
                                             }
                                         } else {
                                             Log.d("TAG", "Error getting documents: ", task.getException());
@@ -124,7 +121,6 @@ public class PostLogin extends MainActivity {
                                     spinnerArray.add(extra.get(i));
                                     i++;
                                 }
-                                Log.d("doc", String.valueOf(doc.get("Pompownie")));
                             }
                         } else {
                             Log.d("Document", "NoData");
@@ -152,7 +148,6 @@ public class PostLogin extends MainActivity {
             Intent i = new Intent(this, PompowniaCheck.class);
             i.putExtra("Pompownia", pomp);
             i.putExtra("serwis", String.valueOf(serwis));
-            Toast.makeText(this, String.valueOf(serwis), Toast.LENGTH_LONG).show();
             startActivity(i);
         }
     }

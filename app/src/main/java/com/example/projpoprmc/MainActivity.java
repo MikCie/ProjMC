@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         if(UID!=null) {
             Intent i = new Intent(this, PostLogin.class);
             i.putExtra("UID", UID);
-            Toast.makeText(this, "Zalogowano", Toast.LENGTH_LONG).show();
             startActivity(i);
         }
         else{
@@ -67,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                //Toast.makeText(this, "Błąd przy logowaniu.", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -97,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            //Toast.makeText(this, "Authentication failed.", Toast.LENGTH_LONG).show();
                             //updateUI(null);
                         }
                     }
@@ -124,5 +121,17 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void mailClear(View view) {
+        EditText email = (EditText) this.findViewById(R.id.Emailbox);
+        email.selectAll();
+        email.setText("");
+    }
+
+    public void passClear(View view) {
+        EditText pass = (EditText) this.findViewById(R.id.PassBox);
+        pass.selectAll();
+        pass.setText("");
     }
 }
