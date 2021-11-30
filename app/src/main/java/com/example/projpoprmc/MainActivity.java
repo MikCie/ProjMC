@@ -74,13 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void klik(View view) {
 
-        EditText email = (EditText) this.findViewById(R.id.Emailbox);
+        /*EditText email = (EditText) this.findViewById(R.id.Emailbox);
         EditText pass = (EditText) this.findViewById(R.id.PassBox);
         String EmCheck = email.getText().toString().trim();
         String PassCheck = pass.getText().toString().trim();
 
-        EmCheck = "mikolaj.cieslak.98@gmail.com";
-        PassCheck = "Kasztan21";
+
 
         mAuth.signInWithEmailAndPassword(EmCheck, PassCheck)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -98,15 +97,14 @@ public class MainActivity extends AppCompatActivity {
                             //updateUI(null);
                         }
                     }
-                });
+                });*/
     }
 
 
     public void logujKlient(View view) {
-        String EmCheck = "cosiebede@gmail.com";
-        String PassCheck = "hopas321";
+        
 
-        mAuth.signInWithEmailAndPassword(EmCheck, PassCheck)
+        /*mAuth.signInWithEmailAndPassword(EmCheck, PassCheck)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -120,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                         }
                     }
-                });
+                });*/
     }
 
     public void mailClear(View view) {
