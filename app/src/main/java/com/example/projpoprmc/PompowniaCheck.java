@@ -246,7 +246,7 @@ public class PompowniaCheck extends AppCompatActivity {
     public void mapaStrzal(View view) {
 
         Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("google.navigation:q=" + dane1 + "," + dane2 + "&mode=l"));
+                Uri.parse("google.navigation:q=" + dane1 + "," + dane2 + "&mode=l")); //potrzeba wprowadzenia czytania danych
         intent.setPackage("com.google.android.apps.maps");
 
         startActivity(intent);
