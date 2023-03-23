@@ -49,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
         String EmCheck = email.getText().toString().trim();
         String PassCheck = pass.getText().toString().trim();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        String UID =currentUser.getUid();
+
         if(EmCheck.isEmpty() || PassCheck.isEmpty()){
             Toast.makeText(this, "Wprowadź dane aby się zalogować.", Toast.LENGTH_LONG).show();
         }else {
@@ -60,12 +59,15 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+                                String UID =currentUser.getUid();
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(UID);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Błędne dane logowania", Toast.LENGTH_LONG).show();
                             }
                         }
                     });

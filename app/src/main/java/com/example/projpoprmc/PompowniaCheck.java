@@ -2,6 +2,8 @@ package com.example.projpoprmc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +43,8 @@ public class PompowniaCheck extends AppCompatActivity {
     int p1zalaNWar=0;
     int p2zalaNWar=0;
     String pompownia="";
+    String dane1="51.3456";
+    String dane2="30.0909";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class PompowniaCheck extends AppCompatActivity {
         TextView p2c =(TextView) this.findViewById(R.id.p2c);
         TextView p1i =(TextView) this.findViewById(R.id.P1ile);
         TextView p2i =(TextView) this.findViewById(R.id.p2ile);
+        Button bMap=(Button) this.findViewById(R.id.buttonLokalizacja);
 
         pompownia = getIntent().getStringExtra("Pompownia");
         boolean serwisant = Boolean.parseBoolean(getIntent().getStringExtra("serwis"));
@@ -95,6 +100,7 @@ public class PompowniaCheck extends AppCompatActivity {
 
         if(serwisant==true) {
             bs.setVisibility(View.VISIBLE);
+            bMap.setVisibility(View.VISIBLE);
         }
         else{
             butz.setVisibility(View.VISIBLE);
@@ -125,6 +131,8 @@ public class PompowniaCheck extends AppCompatActivity {
         EditText p2cn=(EditText) this.findViewById(R.id.p2cnum);
         EditText p1ppn=(EditText) this.findViewById(R.id.p1ppnum);
         EditText p2ppn=(EditText) this.findViewById(R.id.p2ppnum);
+
+
         if(serKlik==false){
             serKlik=true;
 
@@ -234,4 +242,14 @@ public class PompowniaCheck extends AppCompatActivity {
         String update = "Pompownia: "+pompownia+" została zgłoszona do serwisu.";
         Toast.makeText(this, update, Toast.LENGTH_LONG).show();
     }
-}
+
+    public void mapaStrzal(View view) {
+
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("google.navigation:q=" + dane1 + "," + dane2 + "&mode=l"));
+        intent.setPackage("com.google.android.apps.maps");
+
+        startActivity(intent);
+    }
+
+    }
