@@ -74,6 +74,8 @@ public class PompowniaCheck extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
                     if (doc.exists()) {
+                        dane1= String.valueOf(doc.getGeoPoint("Lokalizacja").getLatitude());
+                        dane2= String.valueOf(doc.getGeoPoint("Lokalizacja").getLongitude());
                         p1Czas=doc.getLong("P1Czas").intValue();
                         p2Czas=doc.getLong("P2Czas").intValue();
                         p1PRoz= doc.getDouble("P1Start");
